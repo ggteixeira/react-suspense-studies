@@ -22,4 +22,5 @@
 .content-container {
   background-color: lightgreen;
   min-height: 15rem;
+  padding: 2rem;
 }

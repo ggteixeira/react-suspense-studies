@@ -1,0 +1,9 @@
+.posts-container {
+  border: dimgray solid 1px;
+  background-color: lightblue;
+  color: dimgray;
+  border-radius: 3px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  max-width: 530px;
+}

@@ -8,11 +8,11 @@ function App() {
       <div className="title-container shadow">
         <h2>Just another React app that uses Suspense</h2>
       </div>
-      <Suspense fallback={<h2>Peraí monstro...</h2>}>
-        <div className="content-container shadow">
+      <div className="content-container shadow">
+        <Suspense fallback={<h4>Peraí monstro...</h4>}>
           <Posts />
-        </div>
-      </Suspense>
+        </Suspense>
+      </div>
     </div>
   );
 }

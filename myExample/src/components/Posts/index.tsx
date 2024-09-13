@@ -1,10 +1,7 @@
-import { Fragment, useState } from "react";
+import { useState, Fragment } from "react";
 import fetchData from "../../api/fetchData";
 import "./index.css";
-
-const resource = fetchData(
-  "https://jsonplaceholder.typicode.com/posts?_limit=5",
-);
+import "../../index.css";
 
 interface IPost {
   title: string;
@@ -13,30 +10,29 @@ interface IPost {
 }
 
 const Posts = () => {
-  const posts = resource.read();
+  const [result, setResult] = useState(null);
 
-  const [selectedItem, setSelectedItem] = useState(-1);
+  const handleFetch = () => {
+    setResult(fetchData("https://jsonplaceholder.typicode.com/posts?_limit=5"));
 
-  const toggleExpand = (item: IPost) =>
-    setSelectedItem(selectedItem !== -1 ? -1 : item.id);
+    // setResult(data);
+  };
 
-  const renderPosts = posts.map((post: IPost) => {
-    return (
-      <Fragment key={post.id}>
-        <div onClick={() => toggleExpand(post)} className="posts-container">
-          <p>{post.title}</p>
-        </div>
-
-        {post.id === selectedItem && (
-          <div className="posts-container animated.card">
-            <p>{post.body}</p>
-          </div>
-        )}
-      </Fragment>
-    );
+  const renderItems = result?.read().map(({ title, id }: IPost) => {
+    return <p key={id}>{title}</p>;
   });
 
-  return <div>{renderPosts}</div>;
+  return (
+    <Fragment>
+      <div className="container">
+        <div onClick={handleFetch} className="button-container shadow">
+          <h1>Click me to load images</h1>
+        </div>
+
+        <div className="posts-container">{renderItems}</div>
+      </div>
+    </Fragment>
+  );
 };
 
 export default Posts;

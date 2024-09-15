@@ -13,20 +13,20 @@ const Posts = () => {
   const [result, setResult] = useState(null);
 
   const handleFetch = () => {
-    setResult(fetchData("https://jsonplaceholder.typicode.com/posts?_limit=5"));
-
-    // setResult(data);
+    setResult(
+      fetchData("https://jsonplaceholder.typicode.com/todos?_limit=10"),
+    );
   };
 
-  const renderItems = result?.read().map(({ title, id }: IPost) => {
-    return <p key={id}>{title}</p>;
-  });
+  const renderItems = result
+    ?.read()
+    .map(({ title, id }: IPost) => <p key={id}>{title}</p>);
 
   return (
     <Fragment>
       <div className="container">
         <div onClick={handleFetch} className="button-container shadow">
-          <h1>Click me to load images</h1>
+          <h1>Click me to fetch</h1>
         </div>
 
         <div className="posts-container">{renderItems}</div>
